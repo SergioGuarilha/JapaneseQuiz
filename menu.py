@@ -1,5 +1,8 @@
 import pygame
+import random
 from quizbuilder import all_rect_numbers
+from hiragana import hiradict
+from katakana import katadict
 
 pygame.init()
 screen = pygame.display.set_mode((1000, 600))
@@ -7,7 +10,7 @@ font = pygame.font.Font('fonts/ipaexg.ttf', 36)
 
 quiz_options = ["Hiragana", "Hiragana\n Combos", "Katakana", "Katakana\n Combos"]
 
-dist_from_top = 400
+dist_from_top = 410
 rect_width = 180
 rect_height = 140
 border_width = 10
@@ -22,6 +25,23 @@ menu_rects = [
 
 def draw_menu():
     screen.fill("white")
+
+    #draws menu background decoration
+    for i in range(10):
+        screen_width = pygame.display.get_window_size()[0]
+        screen_height = pygame.display.get_window_size()[1]
+        line_pattern = ((i * 10) + 5) / 100
+        line_placement = screen_height * line_pattern
+        pygame.draw.line(screen, pygame.Color("white"),[0, line_placement],[1000, line_placement], 5)
+        for j in range(25):
+            if j % 2 == 0:
+                hira_or_kata = hiradict
+            else:
+                hira_or_kata = katadict
+            deco_symbol = font.render(hira_or_kata['symbols'].__getitem__(random.randrange(len(hira_or_kata['symbols']))), True, pygame.Color("black"))
+            symbol_x = (j / 24) * screen_width
+            symbol_y = line_placement - (deco_symbol.get_height() // 2)
+            screen.blit(deco_symbol, (symbol_x, symbol_y))
 
     pygame.draw.rect(screen, "black", main_rect)
     pygame.draw.rect(screen, "grey", main_rect, border_width)
