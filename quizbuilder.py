@@ -46,7 +46,6 @@ def draw_quiz(chosen_quiz):
     global correct_rect_index
     global correct_rect_sound
     global chosen_dict
-    screen.fill([40, 40, 40])
     match chosen_quiz:
         case 0:
             chosen_dict = hiradict
@@ -56,6 +55,8 @@ def draw_quiz(chosen_quiz):
             chosen_dict = katadict
         case 3:
             chosen_dict = katacombosdict
+
+    screen.fill([40, 40, 40])
     list_size = len(chosen_dict['symbols'])
 
     pygame.draw.rect(screen, "black", main_rect)

@@ -5,8 +5,11 @@ from hiragana import hiradict
 from katakana import katadict
 
 pygame.init()
+
+#General Configurations
 screen = pygame.display.set_mode((1000, 600))
 font = pygame.font.Font('fonts/ipaexg.ttf', 36)
+config_cog = pygame.image.load('./assets/ConfigCog.png')
 
 quiz_options = ["Hiragana", "Hiragana\n Combos", "Katakana", "Katakana\n Combos"]
 
@@ -16,6 +19,7 @@ rect_height = 140
 border_width = 10
 
 main_rect = pygame.Rect(300, 50, 400, 200)
+config_rect = pygame.Rect(890, 10, 70, 70)
 menu_rects = [
     pygame.Rect(80, dist_from_top, rect_width, rect_height),
     pygame.Rect(300, dist_from_top, rect_width, rect_height),
@@ -48,6 +52,11 @@ def draw_menu():
     title = font.render("Japanese Quiz", True, "white")
     title_rect = title.get_rect(center=main_rect.center)
     screen.blit(title, title_rect)
+
+    pygame.draw.rect(screen, "white", config_rect)
+    pygame.draw.rect(screen, "grey", config_rect, 4)
+    config_cog_rect = config_cog.get_rect(center=config_rect.center)
+    screen.blit(config_cog, config_cog_rect)
 
     for i, rect in enumerate(menu_rects):
         pygame.draw.rect(screen, "black", rect)
