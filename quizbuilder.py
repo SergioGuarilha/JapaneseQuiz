@@ -11,10 +11,11 @@ font = pygame.font.Font('fonts/ipaexg.ttf', 36)
 return_arrow = pygame.image.load('./assets/ReturnArrow.png')
 scaled_arrow = pygame.transform.scale(return_arrow, (90, 50))
 
+#Global variables
 correct_rect_index = None
 correct_rect_sound = None
-all_rect_numbers = []
 chosen_dict = {}
+all_rect_numbers = []
 
 #Rectangle configurations
 distfromtop = 350
@@ -33,7 +34,7 @@ quiz_rects = [
 ]
 
 #Selects a random number within the list's size
-def draw_number(symbol_number, param_list_size):
+def pick_rand_number(symbol_number, param_list_size):
     if param_list_size != 1:
         while True:
             number = random.randrange(param_list_size)
@@ -84,7 +85,7 @@ def draw_quiz(chosen_quiz):
             sound = font.render(chosen_dict['sounds'].__getitem__(chosen_symbol), True, "white")
             all_rect_numbers.append(chosen_symbol)
         else:
-            random_sound = draw_number(chosen_symbol, list_size)
+            random_sound = pick_rand_number(chosen_symbol, list_size)
             sound = font.render(chosen_dict['sounds'].__getitem__(random_sound), True, "white")
             all_rect_numbers.append(random_sound)
 
