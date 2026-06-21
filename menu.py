@@ -84,3 +84,5 @@ def draw_menu(redecorate=False):
 
     for i in range(len(all_rect_numbers)):
         all_rect_numbers.pop(0)
+
+    pygame.display.flip()

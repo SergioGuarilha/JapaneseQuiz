@@ -92,6 +92,8 @@ def draw_quiz(chosen_quiz):
         sound_rect = sound.get_rect(center=rect.center)
         screen.blit(sound, sound_rect)
 
+    pygame.display.flip()
+
 #Draws the result
 def draw_result():
     screen.fill([40, 40, 40])
@@ -117,6 +119,8 @@ def draw_result():
 
     for i in range(len(all_rect_numbers)):
         all_rect_numbers.pop(0)
+
+    pygame.display.flip()
 
 def get_correct_rect_index():
     return correct_rect_index

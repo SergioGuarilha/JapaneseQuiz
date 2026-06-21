@@ -5,12 +5,16 @@ from configscreen import draw_config, config_screen_rect
 from audios import menu_click, return_sound, correct_guess, wrong_guess
 
 if __name__ =='__main__':
+    #state variables
     on_result_screen = False
     on_menu_screen = True
     on_config_screen = False
+
+    #config variables
     add_deco = True
     current_quiz = None
 
+    #draw initial screen
     draw_menu(add_deco)
     pygame.display.flip()
 
@@ -25,18 +29,15 @@ if __name__ =='__main__':
                 for i, rect in enumerate(menu_rects):
                     if rect.collidepoint(mouse_pos) and not on_config_screen:
                         pygame.mixer.Sound.play(menu_click)
-                        draw_quiz(i)
                         current_quiz = i
-                        pygame.display.flip()
+                        draw_quiz(i)
                         on_menu_screen = False
                 if config_rect.collidepoint(mouse_pos):
                     pygame.mixer.Sound.play(menu_click)
                     draw_config()
-                    pygame.display.flip()
                     on_config_screen = True
                 elif not config_screen_rect.collidepoint(mouse_pos) and on_config_screen:
                     draw_menu()
-                    pygame.display.flip()
                     on_config_screen = False
 
             elif event.type == pygame.MOUSEBUTTONDOWN and not on_result_screen:
@@ -44,12 +45,10 @@ if __name__ =='__main__':
                 if return_rect.collidepoint(mouse_pos):
                     pygame.mixer.Sound.play(return_sound)
                     draw_menu(add_deco)
-                    pygame.display.flip()
                     on_menu_screen = True
                 for i, rect in enumerate(quiz_rects):
                     if rect.collidepoint(mouse_pos):
                         draw_result()
-                        pygame.display.flip()
                         on_result_screen = True
                         if i == get_correct_rect_index():
                             pygame.mixer.Sound.play(correct_guess)
@@ -59,7 +58,6 @@ if __name__ =='__main__':
             elif event.type == pygame.MOUSEBUTTONDOWN and on_result_screen:
                 mouse_pos = pygame.mouse.get_pos()
                 draw_quiz(current_quiz)
-                pygame.display.flip()
                 on_result_screen = False
 
     pygame.quit()
