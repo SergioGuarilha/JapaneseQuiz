@@ -80,7 +80,6 @@ def draw_menu(redecorate=False):
             text_rect = text.get_rect(center=rect.center)
             menu_cache.blit(text, text_rect)
 
-    screen = pygame.display.get_surface()
     screen.blit(menu_cache, (0, 0))
 
     for i in range(len(all_rect_numbers)):
