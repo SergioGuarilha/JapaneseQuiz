@@ -43,7 +43,7 @@ def pick_rand_number(symbol_number, param_list_size):
     return 0
 
 #Draws the quiz
-def draw_quiz(chosen_quiz):
+def draw_rand_quiz(chosen_quiz):
     global correct_rect_index
     global correct_rect_sound
     global chosen_dict
