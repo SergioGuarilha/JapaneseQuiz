@@ -1,7 +1,7 @@
 import pygame
 from menu import draw_menu, menu_rects, config_rect
 from quizbuilder import draw_rand_quiz, draw_result, quiz_rects, return_rect, get_correct_rect_index
-from configscreen import draw_config, config_screen_rect
+from configscreen import draw_config, config_screen_rect, feedback_rects
 from audios import menu_click, return_sound, correct_guess, wrong_guess
 
 if __name__ =='__main__':
@@ -39,6 +39,10 @@ if __name__ =='__main__':
                 elif not config_screen_rect.collidepoint(mouse_pos) and on_config_screen:
                     draw_menu()
                     on_config_screen = False
+                elif on_config_screen:
+                    for i, rect in enumerate(feedback_rects):
+                        if rect.collidepoint(mouse_pos):
+                            draw_config(i)
 
             elif event.type == pygame.MOUSEBUTTONDOWN and not on_result_screen:
                 mouse_pos = pygame.mouse.get_pos()
