@@ -52,8 +52,8 @@ def draw_config(update=None):
         else:
             color_dict[update] = "red"
 
-    left_margin = left_adjust + 25
-    top_margin = top_adjust + 25
+    left_margin = left_adjust + 23
+    top_margin = top_adjust + 23
     for i, rect in enumerate(feedback_rects):
         pygame.draw.circle(surface, color_dict[i], (left_margin, top_margin), 25)
         top_margin += 65
